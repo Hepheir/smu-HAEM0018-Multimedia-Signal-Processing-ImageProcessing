@@ -48,13 +48,17 @@
 #define ID_MUL_CONSTANT                 32782
 #define ID_32783                        32783
 #define ID_DIV_CONSTANT                 32784
+#define ID_32785                        32785
+#define ID_AND_OPERATE                  32786
+#define ID_32787                        32787
+#define ID_OR_OPERATE                   32788
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        318
-#define _APS_NEXT_COMMAND_VALUE         32785
+#define _APS_NEXT_COMMAND_VALUE         32789
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

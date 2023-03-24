@@ -36,6 +36,8 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_SUB_CONSTANT, &CImageProcessingView::OnSubConstant)
 	ON_COMMAND(ID_MUL_CONSTANT, &CImageProcessingView::OnMulConstant)
 	ON_COMMAND(ID_DIV_CONSTANT, &CImageProcessingView::OnDivConstant)
+	ON_COMMAND(ID_AND_OPERATE, &CImageProcessingView::OnAndOperate)
+	ON_COMMAND(ID_OR_OPERATE, &CImageProcessingView::OnOrOperate)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -234,6 +236,30 @@ void CImageProcessingView::OnDivConstant()
 	ASSERT_VALID(pDoc); // 인스턴스 주소를 가져옴
 
 	pDoc->OnDivConstant();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnAndOperate()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnAndOperate();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnOrOperate()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnOrOperate();
 
 	Invalidate(TRUE);
 }

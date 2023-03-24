@@ -63,4 +63,6 @@ public:
 	void OnSubConstant();
 	void OnMulConstant();
 	void OnDivConstant();
+	void OnAndOperate();
+	void OnOrOperate();
 };

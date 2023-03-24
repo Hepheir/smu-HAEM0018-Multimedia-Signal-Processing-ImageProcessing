@@ -409,3 +409,63 @@ void CImageProcessingDoc::OnDivConstant()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnAndOperate()
+{
+
+	CConstantDlg dlg;
+	int i;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	if (dlg.DoModal() == IDOK) {
+		for (i = 0; i < m_size; i++) {
+			// 비트 단위 AND 연산
+			if ((m_InputImage[i] & (unsigned char)dlg.m_Constant) >= 255)
+			{
+				m_OutputImage[i] = 255;
+			}
+			else if ((m_InputImage[i] & (unsigned char)dlg.m_Constant) < 0)
+			{
+				m_OutputImage[i] = 0;
+			}
+			else {
+				m_OutputImage[i] = (m_InputImage[i]
+					& (unsigned char)dlg.m_Constant);
+			}
+		}
+	}
+}
+
+
+void CImageProcessingDoc::OnOrOperate()
+{
+	CConstantDlg dlg;
+	int i;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	if (dlg.DoModal() == IDOK) {
+		for (i = 0; i < m_size; i++) {
+			// 비트 단위 OR 연산
+			if ((m_InputImage[i] | (unsigned char) dlg.m_Constant) >= 255) {
+				m_OutputImage[i] = 255;
+			}
+			else if ((m_InputImage[i] | (unsigned char) dlg.m_Constant) < 0) {
+				m_OutputImage[i] = 0;
+			}
+			else {
+				m_OutputImage[i] = (m_InputImage[i] | (unsigned char) dlg.m_Constant);
+			}
+		}
+	}
+}
