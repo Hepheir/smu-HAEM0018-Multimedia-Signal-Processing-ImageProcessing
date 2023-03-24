@@ -787,3 +787,104 @@ void CImageProcessingDoc::OnHistoEqual()
 		m_OutputImage[i] = (unsigned char)(m_Sum_Of_HIST[Temp] * HIGH / m_size);
 	}
 }
+
+
+void CImageProcessingDoc::OnHistoSpec()
+{
+	int i, value, Dvalue, top, bottom, DADD;
+	unsigned char* m_DTEMP, m_Sum_Of_ScHIST[256], m_TABLE[256];
+	unsigned char LOW, HIGH, Temp, * m_Org_Temp;
+	double m_DHIST[256], m_Sum_Of_DHIST[256], SUM = 0.0, DSUM = 0.0;
+	double DMAX, DMIN;
+
+	top = 255;
+	bottom = top - 1;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+	m_Org_Temp = new unsigned char[m_size];
+
+	CFile File;
+	CFileDialog OpenDlg(TRUE);
+
+	// 원하는 히스토그램이 있는 영상을 입력받음
+	if (OpenDlg.DoModal() != IDOK) {
+		return;
+	}
+	File.Open(OpenDlg.GetPathName(), CFile::modeRead);
+
+	if (File.GetLength() == (unsigned)m_size) {
+		m_DTEMP = new unsigned char[m_size];
+		File.Read(m_DTEMP, m_size);
+		File.Close();
+	}
+	else {
+		AfxMessageBox("Image size not matched");
+		// 같은 크기의 영상을 대상으로 함
+		return;
+	}
+
+	LOW = 0;
+	HIGH = 255;
+
+	// 초기화
+	for (i = 0; i < 256; i++) {
+		m_HIST[i] = LOW;
+		m_DHIST[i] = LOW;
+		m_TABLE[i] = LOW;
+	}
+
+	// 빈도 수 조사
+	for (i = 0; i < m_size; i++) {
+		value = (int)m_InputImage[i];
+		m_HIST[value]++;
+		Dvalue = (int) m_DTEMP[i];
+		m_DHIST[Dvalue]++;
+	}
+
+	// 누적 히스토그램 조사
+	for (i = 0; i < 256; i++) {
+		SUM += m_HIST[i];
+		m_Sum_Of_HIST[i] = SUM;
+		DSUM += m_DHIST[i];
+		m_Sum_Of_DHIST[i] = DSUM;
+	}
+	// 원본 영상의 평활화
+	for (i = 0; i < m_size; i++) {
+		Temp = m_InputImage[i];
+		m_Org_Temp[i] = (unsigned char)(m_Sum_Of_HIST[Temp] * HIGH / m_size);
+	}
+
+	// 누적 히스토그램에서 최소값과 최대값 지정
+	DMIN = m_Sum_Of_DHIST[0];
+	DMAX = m_Sum_Of_DHIST[255];
+
+	// 원하는 영상을 평활화
+	for (i = 0; i < 256; i++) {
+		m_Sum_Of_ScHIST[i] = (unsigned char)((m_Sum_Of_DHIST[i]
+			- DMIN) * HIGH / (DMAX - DMIN));
+	}
+
+
+	// 룩업테이블을 이용한 명세화
+	for (; ; ) {
+		for (i = m_Sum_Of_ScHIST[bottom];
+			i <= m_Sum_Of_ScHIST[top]; i++) {
+			m_TABLE[i] = top;
+		}
+		top = bottom;
+		bottom = bottom - 1;
+
+		if (bottom < -1)
+			break;
+	}
+
+	for (i = 0; i < m_size; i++) {
+		DADD = (int)m_Org_Temp[i];
+		m_OutputImage[i] = m_TABLE[DADD];
+	}
+
+}

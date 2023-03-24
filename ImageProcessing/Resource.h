@@ -72,13 +72,15 @@
 #define ID_HISTOGRAM                    32804
 #define ID_32805                        32805
 #define ID_HISTO_EQUAL                  32806
+#define ID_32807                        32807
+#define ID_HISTO_SPEC                   32808
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        320
-#define _APS_NEXT_COMMAND_VALUE         32807
+#define _APS_NEXT_COMMAND_VALUE         32809
 #define _APS_NEXT_CONTROL_VALUE         1002
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

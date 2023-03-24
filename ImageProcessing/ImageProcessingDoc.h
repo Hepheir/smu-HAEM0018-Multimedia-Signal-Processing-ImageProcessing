@@ -77,4 +77,5 @@ public:
 	double m_Sum_Of_HIST[256];
 	unsigned char m_Scale_HIST[256];
 	void OnHistoEqual();
+	void OnHistoSpec();
 };
