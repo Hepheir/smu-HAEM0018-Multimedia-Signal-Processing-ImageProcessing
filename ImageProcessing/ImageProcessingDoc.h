@@ -62,4 +62,5 @@ public:
 	void OnSumConstant();
 	void OnSubConstant();
 	void OnMulConstant();
+	void OnDivConstant();
 };
