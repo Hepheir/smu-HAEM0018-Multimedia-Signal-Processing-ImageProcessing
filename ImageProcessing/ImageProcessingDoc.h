@@ -52,4 +52,9 @@ public:
 	int m_size;
 	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
 	virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
+	void OnDownSampling();
+	unsigned char* m_OutputImage;
+	int m_Re_width;
+	int m_Re_height;
+	int m_Re_size;
 };

@@ -29,6 +29,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CImageProcessingView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_COMMAND(ID_DOWN_SAMPLING, &CImageProcessingView::OnDownSampling)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -55,20 +56,30 @@ BOOL CImageProcessingView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CImageProcessingView::OnDraw(CDC* pDC)
 {
-	CImageProcessingDoc* pDoc = GetDocument();
+	CImageProcessingDoc* pDoc = GetDocument(); // Doc 클래스 참조
 	ASSERT_VALID(pDoc);
-	if (!pDoc)
-		return;
+	// TODO: add draw code for native data here
 
 	int i, j;
 	unsigned char R, G, B;
-
+	// 입력 영상 출력
 	for (i = 0; i < pDoc->m_height; i++) {
 		for (j = 0; j < pDoc->m_width; j++) {
-			R = G = B = pDoc->m_InputImage[i * pDoc->m_width + j];
+			R = pDoc->m_InputImage[i * pDoc->m_width + j];
+			G = B = R;
 			pDC->SetPixel(j + 5, i + 5, RGB(R, G, B));
 		}
 	}
+
+	// 축소된 영상 출력
+	for (i = 0; i < pDoc->m_Re_height; i++) {
+		for (j = 0; j < pDoc->m_Re_width; j++) {
+			R = pDoc->m_OutputImage[i * pDoc->m_Re_width + j];
+			G = B = R;
+			pDC->SetPixel(j + pDoc->m_width + 10, i + 5, RGB(R, G, B));
+		}
+	}
+
 }
 
 
@@ -134,3 +145,16 @@ CImageProcessingDoc* CImageProcessingView::GetDocument() const // 디버그되�
 
 
 // CImageProcessingView 메시지 처리기
+
+
+void CImageProcessingView::OnDownSampling()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument(); // Doc 클래스 참조
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnDownSampling(); // Doc 클래스에 OnDownSampling 함수 호출
+
+	Invalidate(TRUE); // 화면 갱신
+
+}

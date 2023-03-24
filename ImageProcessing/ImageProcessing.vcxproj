@@ -183,6 +183,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CDownSampleDlg.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="ImageProcessing.h" />
     <ClInclude Include="ImageProcessingDoc.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CDownSampleDlg.cpp" />
     <ClCompile Include="ImageProcessing.cpp" />
     <ClCompile Include="ImageProcessingDoc.cpp" />
     <ClCompile Include="ImageProcessingView.cpp" />
