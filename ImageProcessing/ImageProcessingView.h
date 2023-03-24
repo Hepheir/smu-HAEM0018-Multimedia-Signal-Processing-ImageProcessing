@@ -60,6 +60,7 @@ public:
 	afx_msg void OnStressTransform();
 	afx_msg void OnHistoStretch();
 	afx_msg void OnEndInSearch();
+	afx_msg void OnHistogram();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전

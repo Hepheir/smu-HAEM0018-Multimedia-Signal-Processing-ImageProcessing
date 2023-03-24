@@ -72,4 +72,8 @@ public:
 	void OnStressTransform();
 	void OnHistoStretch();
 	void OnEndInSearch();
+	void OnHistogram();
+	double m_HIST[256];
+	double m_Sum_Of_HIST[256];
+	unsigned char m_Scale_HIST[256];
 };

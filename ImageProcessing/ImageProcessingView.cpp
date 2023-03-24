@@ -45,6 +45,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_STRESS_TRANSFORM, &CImageProcessingView::OnStressTransform)
 	ON_COMMAND(ID_HISTO_STRETCH, &CImageProcessingView::OnHistoStretch)
 	ON_COMMAND(ID_END_IN_SEARCH, &CImageProcessingView::OnEndInSearch)
+	ON_COMMAND(ID_HISTOGRAM, &CImageProcessingView::OnHistogram)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -348,5 +349,15 @@ void CImageProcessingView::OnEndInSearch()
 
 	pDoc->OnEndInSearch();
 
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnHistogram()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnHistogram();
 	Invalidate(TRUE);
 }
