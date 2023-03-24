@@ -45,6 +45,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnDownSampling();
+	afx_msg void OnUpSampling();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전

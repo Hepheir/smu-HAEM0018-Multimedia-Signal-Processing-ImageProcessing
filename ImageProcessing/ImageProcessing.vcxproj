@@ -184,6 +184,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CDownSampleDlg.h" />
+    <ClInclude Include="CUpSampleDlg.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="ImageProcessing.h" />
     <ClInclude Include="ImageProcessingDoc.h" />
@@ -195,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CDownSampleDlg.cpp" />
+    <ClCompile Include="CUpSampleDlg.cpp" />
     <ClCompile Include="ImageProcessing.cpp" />
     <ClCompile Include="ImageProcessingDoc.cpp" />
     <ClCompile Include="ImageProcessingView.cpp" />

@@ -12,6 +12,7 @@
 
 #include "ImageProcessingDoc.h"
 #include "CDownSampleDlg.h"
+#include "CUpSampleDlg.h"
 
 #include <propkey.h>
 
@@ -222,6 +223,35 @@ void CImageProcessingDoc::OnDownSampling()
 					= m_InputImage[(i * dlg.m_DownSampleRate * m_width) + dlg.m_DownSampleRate * j];
 				// 축소 영상을 생성
 			}
+		}
+	}
+
+}
+
+
+void CImageProcessingDoc::OnUpSampling()
+{
+	int i, j;
+
+	CUpSampleDlg dlg;
+	if (dlg.DoModal() == IDOK) { // DoModal 대화상자의 활성화 여부
+		m_Re_height = m_height * dlg.m_UpSampleRate;
+		// 확대 영상의 세로 길이 계산
+		m_Re_width = m_width * dlg.m_UpSampleRate;
+		// 확대 영상의 가로 길이 계산
+		m_Re_size = m_Re_height * m_Re_width;
+		// 확대 영상의 크기 계산
+		m_OutputImage = new unsigned char[m_Re_size];
+		// 확대 영상을 위한 메모리 할당
+
+		for (i = 0; i < m_Re_size; i++)
+			m_OutputImage[i] = 0; // 초기화
+
+		for (i = 0; i < m_height; i++) {
+			for (j = 0; j < m_width; j++) {
+				m_OutputImage[i * dlg.m_UpSampleRate * m_Re_width +
+					dlg.m_UpSampleRate * j] = m_InputImage[i * m_width + j];
+			} // 재배치하여 영상 확대
 		}
 	}
 

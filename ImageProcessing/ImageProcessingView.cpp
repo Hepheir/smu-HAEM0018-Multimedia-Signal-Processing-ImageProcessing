@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_COMMAND(ID_DOWN_SAMPLING, &CImageProcessingView::OnDownSampling)
+	ON_COMMAND(ID_UP_SAMPLING, &CImageProcessingView::OnUpSampling)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -157,4 +158,16 @@ void CImageProcessingView::OnDownSampling()
 
 	Invalidate(TRUE); // 화면 갱신
 
+}
+
+
+void CImageProcessingView::OnUpSampling()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument(); // Doc 클래스 참조
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnUpSampling(); // Doc 클래스에 OnUpSampling 함수 호출
+
+	Invalidate(TRUE); // 화면 갱신
 }
