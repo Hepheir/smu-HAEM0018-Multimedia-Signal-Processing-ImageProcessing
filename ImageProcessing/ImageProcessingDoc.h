@@ -71,4 +71,5 @@ public:
 	void OnBinarization();
 	void OnStressTransform();
 	void OnHistoStretch();
+	void OnEndInSearch();
 };

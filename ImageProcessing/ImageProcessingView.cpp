@@ -44,6 +44,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_BINARIZATION, &CImageProcessingView::OnBinarization)
 	ON_COMMAND(ID_STRESS_TRANSFORM, &CImageProcessingView::OnStressTransform)
 	ON_COMMAND(ID_HISTO_STRETCH, &CImageProcessingView::OnHistoStretch)
+	ON_COMMAND(ID_END_IN_SEARCH, &CImageProcessingView::OnEndInSearch)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -335,6 +336,17 @@ void CImageProcessingView::OnHistoStretch()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnHistoStretch();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnEndInSearch()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnEndInSearch();
 
 	Invalidate(TRUE);
 }

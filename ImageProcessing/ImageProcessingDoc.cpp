@@ -625,3 +625,48 @@ void CImageProcessingDoc::OnHistoStretch()
 	for (i = 0; i < m_size; i++)
 		m_OutputImage[i] = (unsigned char)((m_InputImage[i] - MIN) * HIGH / (MAX - MIN));
 }
+
+
+void CImageProcessingDoc::OnEndInSearch()
+{
+	int i;
+	unsigned char LOW, HIGH, MAX, MIN;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	LOW = 0;
+	HIGH = 255;
+
+	MIN = m_InputImage[0];
+	MAX = m_InputImage[0];
+
+	for (i = 0; i < m_size; i++) {
+		if (m_InputImage[i] < MIN)
+			MIN = m_InputImage[i];
+	}
+
+	for (i = 0; i < m_size; i++) {
+		if (m_InputImage[i] > MAX)
+			MAX = m_InputImage[i];
+	}
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	for (i = 0; i < m_size; i++) {
+		// 원본 영상의 최소값보다 작은 값은 0
+		if (m_InputImage[i] <= MIN) {
+			m_OutputImage[i] = 0;
+		}
+
+		// 원본 영상의 최대값보다 큰 값은 255
+		else if (m_InputImage[i] >= MAX) {
+			m_OutputImage[i] = 255;
+		}
+		else
+			m_OutputImage[i] = (unsigned char)((m_InputImage[i] -
+				MIN) * HIGH / (MAX - MIN));
+	}
+
+}
