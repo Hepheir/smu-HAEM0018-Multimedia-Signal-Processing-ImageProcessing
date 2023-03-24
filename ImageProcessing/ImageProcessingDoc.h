@@ -65,4 +65,5 @@ public:
 	void OnDivConstant();
 	void OnAndOperate();
 	void OnOrOperate();
+	void OnXorOperate();
 };

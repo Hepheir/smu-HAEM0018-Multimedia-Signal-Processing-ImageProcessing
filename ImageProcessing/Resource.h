@@ -52,13 +52,15 @@
 #define ID_AND_OPERATE                  32786
 #define ID_32787                        32787
 #define ID_OR_OPERATE                   32788
+#define ID_32789                        32789
+#define ID_XOR_OPERATE                  32790
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        318
-#define _APS_NEXT_COMMAND_VALUE         32789
+#define _APS_NEXT_COMMAND_VALUE         32791
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

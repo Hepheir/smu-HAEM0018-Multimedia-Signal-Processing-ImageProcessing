@@ -38,6 +38,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_DIV_CONSTANT, &CImageProcessingView::OnDivConstant)
 	ON_COMMAND(ID_AND_OPERATE, &CImageProcessingView::OnAndOperate)
 	ON_COMMAND(ID_OR_OPERATE, &CImageProcessingView::OnOrOperate)
+	ON_COMMAND(ID_XOR_OPERATE, &CImageProcessingView::OnXorOperate)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -261,5 +262,15 @@ void CImageProcessingView::OnOrOperate()
 
 	pDoc->OnOrOperate();
 
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnXorOperate()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	pDoc->OnXorOperate();
 	Invalidate(TRUE);
 }

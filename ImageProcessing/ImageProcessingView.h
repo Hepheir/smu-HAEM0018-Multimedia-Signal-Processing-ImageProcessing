@@ -53,6 +53,7 @@ public:
 	afx_msg void OnDivConstant();
 	afx_msg void OnAndOperate();
 	afx_msg void OnOrOperate();
+	afx_msg void OnXorOperate();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전
