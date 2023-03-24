@@ -56,6 +56,7 @@ public:
 	afx_msg void OnXorOperate();
 	afx_msg void OnNegaTransform();
 	afx_msg void OnGammaCorrection();
+	afx_msg void OnBinarization();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전

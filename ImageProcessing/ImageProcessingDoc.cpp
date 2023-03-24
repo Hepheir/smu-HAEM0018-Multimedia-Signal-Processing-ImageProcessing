@@ -540,3 +540,26 @@ void CImageProcessingDoc::OnGammaCorrection()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnBinarization()
+{
+	CConstantDlg dlg;
+
+	int i;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	if (dlg.DoModal() == IDOK) {
+		for (i = 0; i < m_size; i++) {
+			if (m_InputImage[i] >= dlg.m_Constant)
+				m_OutputImage[i] = 255; // 임계 값보다 크면 255 출력
+			else
+				m_OutputImage[i] = 0; // 임계 값보다 작으면 0 출력
+		}
+	}
+}
