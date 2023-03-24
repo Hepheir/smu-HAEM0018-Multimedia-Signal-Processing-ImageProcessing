@@ -136,3 +136,64 @@ void CImageProcessingDoc::Dump(CDumpContext& dc) const
 
 
 // CImageProcessingDoc 명령
+
+
+BOOL CImageProcessingDoc::OnOpenDocument(LPCTSTR lpszPathName)
+{
+	if (!CDocument::OnOpenDocument(lpszPathName)) {
+		return FALSE;
+	}
+	CFile File; // 파일 객체 선언
+
+	File.Open(lpszPathName, CFile::modeRead | CFile::typeBinary);
+	// 파일 열기 대화상자에서 선택한 파일을 지정하고 읽기 모드 선택
+
+	// 이 책에서는 영상의 크기 256*256, 512*512, 640*480만을 사용한다.
+	if (File.GetLength() == 256 * 256) { // RAW 파일의 크기 결정
+
+		m_height = 256;
+		m_width = 256;
+	}
+	else if (File.GetLength() == 512 * 512) { // RAW 파일의 크기 결정
+		m_height = 512;
+		m_width = 512;
+	}
+	else if (File.GetLength() == 640 * 480) { // RAW 파일의 크기 결정
+		m_height = 480;
+		m_width = 640;
+	}
+	else {
+		AfxMessageBox("Not Support Image Size"); // 해당 크기가 없는 경우
+		return 0;
+	}
+	m_size = m_width * m_height; // 영상의 크기 계산
+
+	m_InputImage = new unsigned char[m_size];
+	// 입력 영상의 크기에 맞는 메모리 할당
+
+	for (int i = 0; i < m_size; i++) {
+		m_InputImage[i] = 255; // 초기화
+	}
+	File.Read(m_InputImage, m_size); // 입력 영상 파일 읽기
+	File.Close(); // 파일 닫기
+
+	return TRUE;
+}
+
+
+BOOL CImageProcessingDoc::OnSaveDocument(LPCTSTR lpszPathName)
+{
+	CFile File; // 파일 객체 선언
+	CFileDialog SaveDlg(FALSE, "raw", NULL, OFN_HIDEREADONLY);
+	// raw 파일을 다른 이름으로 저장하기를 위한 대화상자 객체 선언
+
+	if (SaveDlg.DoModal() == IDOK) {
+		// DoModal 멤버 함수에서 저장하기 수행
+		File.Open(SaveDlg.GetPathName(), CFile::modeCreate | CFile::modeWrite);
+		// 파일 열기
+		File.Write(m_InputImage, m_size); // 파일 쓰기
+		File.Close(); // 파일 닫기
+	}
+
+	return TRUE;
+}

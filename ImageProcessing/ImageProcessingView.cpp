@@ -53,14 +53,22 @@ BOOL CImageProcessingView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CImageProcessingView 그리기
 
-void CImageProcessingView::OnDraw(CDC* /*pDC*/)
+void CImageProcessingView::OnDraw(CDC* pDC)
 {
 	CImageProcessingDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
 
-	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
+	int i, j;
+	unsigned char R, G, B;
+
+	for (i = 0; i < pDoc->m_height; i++) {
+		for (j = 0; j < pDoc->m_width; j++) {
+			R = G = B = pDoc->m_InputImage[i * pDoc->m_width + j];
+			pDC->SetPixel(j + 5, i + 5, RGB(R, G, B));
+		}
+	}
 }
 
 
