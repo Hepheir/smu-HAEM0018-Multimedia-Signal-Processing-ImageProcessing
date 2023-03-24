@@ -59,4 +59,5 @@ public:
 	int m_Re_size;
 	void OnUpSampling();
 	void OnQuantization();
+	void OnSumConstant();
 };

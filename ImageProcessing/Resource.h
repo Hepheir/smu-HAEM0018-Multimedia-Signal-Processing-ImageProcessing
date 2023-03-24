@@ -40,13 +40,15 @@
 #define ID_UP_SAMPLING                  32774
 #define ID_32775                        32775
 #define ID_QUANTIZATION                 32776
+#define ID_32777                        32777
+#define ID_SUM_CONSTANT                 32778
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        318
-#define _APS_NEXT_COMMAND_VALUE         32777
+#define _APS_NEXT_COMMAND_VALUE         32779
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
