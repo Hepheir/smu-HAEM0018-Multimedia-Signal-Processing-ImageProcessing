@@ -46,6 +46,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_HISTO_STRETCH, &CImageProcessingView::OnHistoStretch)
 	ON_COMMAND(ID_END_IN_SEARCH, &CImageProcessingView::OnEndInSearch)
 	ON_COMMAND(ID_HISTOGRAM, &CImageProcessingView::OnHistogram)
+	ON_COMMAND(ID_HISTO_EQUAL, &CImageProcessingView::OnHistoEqual)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -359,5 +360,16 @@ void CImageProcessingView::OnHistogram()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnHistogram();
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnHistoEqual()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnHistoEqual();
+
 	Invalidate(TRUE);
 }

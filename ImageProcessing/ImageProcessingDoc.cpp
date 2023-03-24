@@ -748,3 +748,42 @@ void CImageProcessingDoc::OnHistogram()
 	m_Re_height = m_Re_height + 20;
 	m_Re_size = m_Re_height * m_Re_width;
 }
+
+
+void CImageProcessingDoc::OnHistoEqual()
+{
+	int i, value;
+	unsigned char LOW, HIGH, Temp;
+	double SUM = 0.0;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	LOW = 0;
+	HIGH = 255;
+
+	// 초기화
+	for (i = 0; i < 256; i++)
+		m_HIST[i] = LOW;
+
+	// 빈도 수 조사
+	for (i = 0; i < m_size; i++) {
+		value = (int)m_InputImage[i];
+		m_HIST[value]++;
+	}
+
+	// 누적 히스토그램 생성
+	for (i = 0; i < 256; i++) {
+		SUM += m_HIST[i];
+		m_Sum_Of_HIST[i] = SUM;
+	}
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	// 입력 영상을 평활화된 영상으로 출력
+	for (i = 0; i < m_size; i++) {
+		Temp = m_InputImage[i];
+		m_OutputImage[i] = (unsigned char)(m_Sum_Of_HIST[Temp] * HIGH / m_size);
+	}
+}
