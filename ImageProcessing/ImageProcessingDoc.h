@@ -66,4 +66,5 @@ public:
 	void OnAndOperate();
 	void OnOrOperate();
 	void OnXorOperate();
+	void OnNegaTransform();
 };

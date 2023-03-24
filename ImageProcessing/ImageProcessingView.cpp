@@ -39,6 +39,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_AND_OPERATE, &CImageProcessingView::OnAndOperate)
 	ON_COMMAND(ID_OR_OPERATE, &CImageProcessingView::OnOrOperate)
 	ON_COMMAND(ID_XOR_OPERATE, &CImageProcessingView::OnXorOperate)
+	ON_COMMAND(ID_NEGA_TRANSFORM, &CImageProcessingView::OnNegaTransform)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -272,5 +273,17 @@ void CImageProcessingView::OnXorOperate()
 	CImageProcessingDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	pDoc->OnXorOperate();
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnNegaTransform()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnNegaTransform();
+
 	Invalidate(TRUE);
 }
