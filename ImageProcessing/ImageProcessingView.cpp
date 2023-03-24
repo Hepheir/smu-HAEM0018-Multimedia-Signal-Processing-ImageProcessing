@@ -40,6 +40,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_OR_OPERATE, &CImageProcessingView::OnOrOperate)
 	ON_COMMAND(ID_XOR_OPERATE, &CImageProcessingView::OnXorOperate)
 	ON_COMMAND(ID_NEGA_TRANSFORM, &CImageProcessingView::OnNegaTransform)
+	ON_COMMAND(ID_GAMMA_CORRECTION, &CImageProcessingView::OnGammaCorrection)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -284,6 +285,18 @@ void CImageProcessingView::OnNegaTransform()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnNegaTransform();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnGammaCorrection()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnGammaCorrection();
 
 	Invalidate(TRUE);
 }

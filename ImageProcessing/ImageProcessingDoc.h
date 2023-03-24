@@ -67,4 +67,5 @@ public:
 	void OnOrOperate();
 	void OnXorOperate();
 	void OnNegaTransform();
+	void OnGammaCorrection();
 };
