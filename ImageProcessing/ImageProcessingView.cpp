@@ -31,6 +31,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_WM_RBUTTONUP()
 	ON_COMMAND(ID_DOWN_SAMPLING, &CImageProcessingView::OnDownSampling)
 	ON_COMMAND(ID_UP_SAMPLING, &CImageProcessingView::OnUpSampling)
+	ON_COMMAND(ID_QUANTIZATION, &CImageProcessingView::OnQuantization)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -168,6 +169,18 @@ void CImageProcessingView::OnUpSampling()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnUpSampling(); // Doc 클래스에 OnUpSampling 함수 호출
+
+	Invalidate(TRUE); // 화면 갱신
+}
+
+
+void CImageProcessingView::OnQuantization()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument(); // Doc 클래스 참조
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnQuantization(); // Doc 클래스에 OnQuantization 함수 호출
 
 	Invalidate(TRUE); // 화면 갱신
 }
