@@ -15,6 +15,7 @@
 #include "CUpSampleDlg.h"
 #include "CQuantizationDlg.h"
 #include "math.h"
+#include "CConstantDlg.h"
 
 #include <propkey.h>
 
