@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_QUANTIZATION, &CImageProcessingView::OnQuantization)
 	ON_COMMAND(ID_SUM_CONSTANT, &CImageProcessingView::OnSumConstant)
 	ON_COMMAND(ID_SUB_CONSTANT, &CImageProcessingView::OnSubConstant)
+	ON_COMMAND(ID_MUL_CONSTANT, &CImageProcessingView::OnMulConstant)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -208,6 +209,18 @@ void CImageProcessingView::OnSubConstant()
 	ASSERT_VALID(pDoc); // 인스턴스 주소를 가져옴
 
 	pDoc->OnSubConstant();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnMulConstant()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument(); // 도큐먼트 클래스 참조
+	ASSERT_VALID(pDoc); // 인스턴스 주소를 가져옴
+
+	pDoc->OnMulConstant();
 
 	Invalidate(TRUE);
 }

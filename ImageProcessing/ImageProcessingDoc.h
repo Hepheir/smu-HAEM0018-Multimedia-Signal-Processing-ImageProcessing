@@ -61,4 +61,5 @@ public:
 	void OnQuantization();
 	void OnSumConstant();
 	void OnSubConstant();
+	void OnMulConstant();
 };

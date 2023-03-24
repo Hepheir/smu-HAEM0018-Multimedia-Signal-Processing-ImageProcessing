@@ -349,3 +349,34 @@ void CImageProcessingDoc::OnSubConstant()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnMulConstant()
+{
+	CConstantDlg dlg;
+
+	int i;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	if (dlg.DoModal() == IDOK) {
+		for (i = 0; i < m_size; i++) {
+			if (m_InputImage[i] * dlg.m_Constant > 255) {
+				// 곱의 값이 255보다 크면 255를 출력
+				m_OutputImage[i] = 255;
+			}
+			else if (m_InputImage[i] * dlg.m_Constant < 0) {
+				// 곱의 값이 0보다 작으면 0을 출력
+				m_OutputImage[i] = 0;
+			}
+			else {
+				// 상수 값과 화소 값 곱셈
+				m_OutputImage[i] = (unsigned char)(m_InputImage[i] * dlg.m_Constant);
+			}
+		}
+	}
+}
