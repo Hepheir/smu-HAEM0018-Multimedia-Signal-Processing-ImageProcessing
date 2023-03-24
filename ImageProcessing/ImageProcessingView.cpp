@@ -42,6 +42,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_NEGA_TRANSFORM, &CImageProcessingView::OnNegaTransform)
 	ON_COMMAND(ID_GAMMA_CORRECTION, &CImageProcessingView::OnGammaCorrection)
 	ON_COMMAND(ID_BINARIZATION, &CImageProcessingView::OnBinarization)
+	ON_COMMAND(ID_STRESS_TRANSFORM, &CImageProcessingView::OnStressTransform)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -310,6 +311,18 @@ void CImageProcessingView::OnBinarization()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnBinarization();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnStressTransform()
+{
+	// TODO: Add your command handler code here
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnStressTransform();
 
 	Invalidate(TRUE);
 }

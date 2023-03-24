@@ -16,6 +16,7 @@
 #include "CQuantizationDlg.h"
 #include "math.h"
 #include "CConstantDlg.h"
+#include "CStressTransformDlg.h"
 
 #include <propkey.h>
 
@@ -560,6 +561,31 @@ void CImageProcessingDoc::OnBinarization()
 				m_OutputImage[i] = 255; // 임계 값보다 크면 255 출력
 			else
 				m_OutputImage[i] = 0; // 임계 값보다 작으면 0 출력
+		}
+	}
+}
+
+
+void CImageProcessingDoc::OnStressTransform()
+{
+	CStressTransformDlg dlg;
+
+	int i;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	if (dlg.DoModal() == IDOK) {
+		for (i = 0; i < m_size; i++) {
+			// 입력 값이 강조 시작 값과 강조 종료 값 사이에 위치하면 255 출력
+			if (m_InputImage[i] >= dlg.m_StartPoint &&
+				m_InputImage[i] <= dlg.m_EndPoint)
+				m_OutputImage[i] = 255;
+			else
+				m_OutputImage[i] = m_InputImage[i];
 		}
 	}
 }

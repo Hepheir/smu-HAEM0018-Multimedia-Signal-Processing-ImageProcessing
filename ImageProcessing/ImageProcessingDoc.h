@@ -69,4 +69,5 @@ public:
 	void OnNegaTransform();
 	void OnGammaCorrection();
 	void OnBinarization();
+	void OnStressTransform();
 };
