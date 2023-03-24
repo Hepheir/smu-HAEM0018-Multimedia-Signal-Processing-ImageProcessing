@@ -58,6 +58,7 @@ public:
 	afx_msg void OnGammaCorrection();
 	afx_msg void OnBinarization();
 	afx_msg void OnStressTransform();
+	afx_msg void OnHistoStretch();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전

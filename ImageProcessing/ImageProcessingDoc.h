@@ -70,4 +70,5 @@ public:
 	void OnGammaCorrection();
 	void OnBinarization();
 	void OnStressTransform();
+	void OnHistoStretch();
 };

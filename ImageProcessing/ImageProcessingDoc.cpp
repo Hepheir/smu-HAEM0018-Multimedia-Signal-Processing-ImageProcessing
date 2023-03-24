@@ -589,3 +589,39 @@ void CImageProcessingDoc::OnStressTransform()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnHistoStretch()
+{
+
+	int i;
+	unsigned char LOW, HIGH, MAX, MIN;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	LOW = 0;
+	HIGH = 255;
+
+	MIN = m_InputImage[0]; // 최소값을 찾기 위한 초기값
+	MAX = m_InputImage[0]; // 최대값을 찾기 위한 초기값
+
+	// 입력 영상의 최소값 찾기
+	for (i = 0; i < m_size; i++) {
+		if (m_InputImage[i] < MIN)
+			MIN = m_InputImage[i];
+	}
+
+	// 입력 영상의 최대값 찾기
+	for (i = 0; i < m_size; i++) {
+		if (m_InputImage[i] > MAX)
+			MAX = m_InputImage[i];
+	}
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	// 히스토그램 stretch
+	for (i = 0; i < m_size; i++)
+		m_OutputImage[i] = (unsigned char)((m_InputImage[i] - MIN) * HIGH / (MAX - MIN));
+}
