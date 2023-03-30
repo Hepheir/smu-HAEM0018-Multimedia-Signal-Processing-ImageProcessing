@@ -1153,3 +1153,51 @@ void CImageProcessingDoc::OnHpfSharp()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnLpfSharp()
+{
+	CConstantDlg dlg; // 상수를 입력받으려고 대화상자 선언
+
+	int i, j, alpha;
+	double LpfSharpMask[3][3] = { {1. / 9., 1. / 9., 1. / 9.},
+	   {1. / 9., 1. / 9., 1. / 9.}, {1. / 9., 1. / 9., 1. / 9.} };
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	if (dlg.DoModal() == IDOK) {
+		alpha = (int)dlg.m_Constant;
+		// 대화상자를 이용하여 상수를 입력받는다.
+	}
+
+	m_tempImage = OnMaskProcess(m_InputImage, LpfSharpMask);
+
+	for (i = 0; i < m_height; i++) {
+		for (j = 0; j < m_width; j++) {
+			m_tempImage[i][j] = (alpha * m_InputImage
+				[i * m_width + j]) - (unsigned char)m_tempImage[i][j];
+		}
+	}
+
+	// m_tempImage = OnScale(m_tempImage, m_Re_height, m_Re_width);
+
+	for (i = 0; i < m_Re_height; i++) {
+		for (j = 0; j < m_Re_width; j++) {
+			if (m_tempImage[i][j] > 255.)
+				m_tempImage[i][j] = 255.;
+			if (m_tempImage[i][j] < 0.)
+				m_tempImage[i][j] = 0.;
+		}
+	}
+
+	for (i = 0; i < m_Re_height; i++) {
+		for (j = 0; j < m_Re_width; j++) {
+			m_OutputImage[i * m_Re_width + j]
+				= (unsigned char)m_tempImage[i][j];
+		}
+	}
+}

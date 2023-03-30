@@ -87,4 +87,5 @@ public:
 	void OnGaussianFilter();
 	void OnSharpening();
 	void OnHpfSharp();
+	void OnLpfSharp();
 };
