@@ -83,4 +83,5 @@ public:
 	double** OnScale(double** Target, int height, int width);
 	double** Image2DMem(int height, int width);
 	double** m_tempImage;
+	void OnBlurr();
 };
