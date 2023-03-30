@@ -65,6 +65,7 @@ public:
 	afx_msg void OnHistoSpec();
 	afx_msg void OnEmbossing();
 	afx_msg void OnBlurr();
+	afx_msg void OnGaussianFilter();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전

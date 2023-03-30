@@ -50,6 +50,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_HISTO_SPEC, &CImageProcessingView::OnHistoSpec)
 	ON_COMMAND(ID_EMBOSSING, &CImageProcessingView::OnEmbossing)
 	ON_COMMAND(ID_BLURR, &CImageProcessingView::OnBlurr)
+	ON_COMMAND(ID_GAUSSIAN_FILTER, &CImageProcessingView::OnGaussianFilter)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -406,6 +407,17 @@ void CImageProcessingView::OnBlurr()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnBlurr();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnGaussianFilter()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnGaussianFilter();
 
 	Invalidate(TRUE);
 }

@@ -84,4 +84,5 @@ public:
 	double** Image2DMem(int height, int width);
 	double** m_tempImage;
 	void OnBlurr();
+	void OnGaussianFilter();
 };
