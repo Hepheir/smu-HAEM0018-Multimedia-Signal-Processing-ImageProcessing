@@ -48,6 +48,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_HISTOGRAM, &CImageProcessingView::OnHistogram)
 	ON_COMMAND(ID_HISTO_EQUAL, &CImageProcessingView::OnHistoEqual)
 	ON_COMMAND(ID_HISTO_SPEC, &CImageProcessingView::OnHistoSpec)
+	ON_COMMAND(ID_EMBOSSING, &CImageProcessingView::OnEmbossing)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -382,6 +383,17 @@ void CImageProcessingView::OnHistoSpec()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnHistoSpec();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnEmbossing()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnEmbossing();
 
 	Invalidate(TRUE);
 }

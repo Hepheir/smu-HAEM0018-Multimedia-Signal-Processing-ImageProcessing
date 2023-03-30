@@ -78,4 +78,9 @@ public:
 	unsigned char m_Scale_HIST[256];
 	void OnHistoEqual();
 	void OnHistoSpec();
+	void OnEmbossing();
+	double** OnMaskProcess(unsigned char* Target, double Mask[3][3]);
+	double** OnScale(double** Target, int height, int width);
+	double** Image2DMem(int height, int width);
+	double** m_tempImage;
 };

@@ -63,6 +63,7 @@ public:
 	afx_msg void OnHistogram();
 	afx_msg void OnHistoEqual();
 	afx_msg void OnHistoSpec();
+	afx_msg void OnEmbossing();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전
