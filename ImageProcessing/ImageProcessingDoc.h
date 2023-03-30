@@ -88,4 +88,5 @@ public:
 	void OnSharpening();
 	void OnHpfSharp();
 	void OnLpfSharp();
+	void OnDiffOperatorHor();
 };
