@@ -85,4 +85,5 @@ public:
 	double** m_tempImage;
 	void OnBlurr();
 	void OnGaussianFilter();
+	void OnSharpening();
 };
