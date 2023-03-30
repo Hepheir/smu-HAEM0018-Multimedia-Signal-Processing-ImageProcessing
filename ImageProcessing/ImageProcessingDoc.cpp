@@ -1120,3 +1120,36 @@ void CImageProcessingDoc::OnSharpening()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnHpfSharp()
+{
+	int i, j;
+	double HpfSharpMask[3][3] = { {-1. / 9., -1. / 9., -1. / 9.},
+	   {-1. / 9., 8. / 9., -1. / 9.}, {-1. / 9., -1. / 9., -1. / 9.} };
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	m_tempImage = OnMaskProcess(m_InputImage, HpfSharpMask);
+	// m_tempImage = OnScale(m_tempImage, m_Re_height, m_Re_width);
+
+	for (i = 0; i < m_Re_height; i++) {
+		for (j = 0; j < m_Re_width; j++) {
+			if (m_tempImage[i][j] > 255.)
+				m_tempImage[i][j] = 255.;
+			if (m_tempImage[i][j] < 0.)
+				m_tempImage[i][j] = 0.;
+		}
+	}
+
+	for (i = 0; i < m_Re_height; i++) {
+		for (j = 0; j < m_Re_width; j++) {
+			m_OutputImage[i * m_Re_width + j]
+				= (unsigned char)m_tempImage[i][j];
+		}
+	}
+}

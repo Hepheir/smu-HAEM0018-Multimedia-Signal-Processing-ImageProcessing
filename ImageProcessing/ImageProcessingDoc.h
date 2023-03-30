@@ -86,4 +86,5 @@ public:
 	void OnBlurr();
 	void OnGaussianFilter();
 	void OnSharpening();
+	void OnHpfSharp();
 };

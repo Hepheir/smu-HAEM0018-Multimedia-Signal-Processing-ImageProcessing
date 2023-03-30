@@ -67,6 +67,7 @@ public:
 	afx_msg void OnBlurr();
 	afx_msg void OnGaussianFilter();
 	afx_msg void OnSharpening();
+	afx_msg void OnHpfSharp();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전

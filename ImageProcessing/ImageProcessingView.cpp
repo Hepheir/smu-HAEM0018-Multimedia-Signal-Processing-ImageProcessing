@@ -52,6 +52,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_BLURR, &CImageProcessingView::OnBlurr)
 	ON_COMMAND(ID_GAUSSIAN_FILTER, &CImageProcessingView::OnGaussianFilter)
 	ON_COMMAND(ID_SHARPENING, &CImageProcessingView::OnSharpening)
+	ON_COMMAND(ID_HPF_SHARP, &CImageProcessingView::OnHpfSharp)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -430,6 +431,17 @@ void CImageProcessingView::OnSharpening()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnSharpening();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnHpfSharp()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnHpfSharp();
 
 	Invalidate(TRUE);
 }
