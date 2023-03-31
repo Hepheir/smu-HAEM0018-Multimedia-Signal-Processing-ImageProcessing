@@ -92,4 +92,5 @@ public:
 	void OnHomogenOperator();
 	double DoubleABS(double X);
 	void OnLaplacian();
+	void OnNearest();
 };

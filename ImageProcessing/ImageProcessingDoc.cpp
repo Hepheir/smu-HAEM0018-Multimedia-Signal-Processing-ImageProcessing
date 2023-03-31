@@ -1312,3 +1312,39 @@ void CImageProcessingDoc::OnLaplacian()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnNearest()
+{
+	int i, j;
+	int ZoomRate = 2; // 영상 확대 배율
+	double **tempArray;
+
+	m_Re_height = int(ZoomRate*m_height); // 확대된 영상의 높이
+	m_Re_width = int(ZoomRate*m_width); // 확대된 영상의 너비
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_tempImage = Image2DMem(m_height, m_width);
+	tempArray = Image2DMem(m_Re_height, m_Re_width);
+
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	for (i = 0; i<m_height; i++) {
+		for (j = 0; j<m_width; j++) {
+			m_tempImage[i][j] = (double)m_InputImage[i*m_width + j];
+		}
+	}
+
+	for (i = 0; i< m_Re_height; i++) {
+		for (j = 0; j< m_Re_width; j++) {
+			tempArray[i][j] = m_tempImage[i / ZoomRate][j / ZoomRate];
+			// 이웃한 화소를 이용한 보간
+		}
+	}
+
+	for (i = 0; i< m_Re_height; i++) {
+		for (j = 0; j< m_Re_width; j++) {
+			m_OutputImage[i* m_Re_width + j] = (unsigned char)tempArray[i][j];
+		}
+	}
+}

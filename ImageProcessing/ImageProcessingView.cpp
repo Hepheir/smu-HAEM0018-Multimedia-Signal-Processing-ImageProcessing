@@ -57,6 +57,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_DIFF_OPERATOR_HOR, &CImageProcessingView::OnDiffOperatorHor)
 	ON_COMMAND(ID_HOMOGEN_OPERATOR, &CImageProcessingView::OnHomogenOperator)
 	ON_COMMAND(ID_LAPLACIAN, &CImageProcessingView::OnLaplacian)
+	ON_COMMAND(ID_NEAREST, &CImageProcessingView::OnNearest)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -490,6 +491,17 @@ void CImageProcessingView::OnLaplacian()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnLaplacian();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnNearest()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnNearest();
 
 	Invalidate(TRUE);
 }
