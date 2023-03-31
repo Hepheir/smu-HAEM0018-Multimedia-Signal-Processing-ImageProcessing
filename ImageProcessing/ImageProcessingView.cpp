@@ -60,6 +60,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_NEAREST, &CImageProcessingView::OnNearest)
 	ON_COMMAND(ID_BILINEAR, &CImageProcessingView::OnBilinear)
 	ON_COMMAND(ID_MEDIAN_SUB, &CImageProcessingView::OnMedianSub)
+	ON_COMMAND(ID_MEAN_SUB, &CImageProcessingView::OnMeanSub)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -526,6 +527,17 @@ void CImageProcessingView::OnMedianSub()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnMedianSub();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnMeanSub()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnMeanSub();
 
 	Invalidate(TRUE);
 }

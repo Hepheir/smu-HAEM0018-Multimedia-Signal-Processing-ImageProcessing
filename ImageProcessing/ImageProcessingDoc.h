@@ -97,4 +97,5 @@ public:
 	void OnMedianSub();
 	void OnBubbleSort(double *A, int MAX);
 	void OnSwap(double * a, double * b);
+	void OnMeanSub();
 };
