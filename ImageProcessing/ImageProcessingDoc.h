@@ -89,4 +89,6 @@ public:
 	void OnHpfSharp();
 	void OnLpfSharp();
 	void OnDiffOperatorHor();
+	void OnHomogenOperator();
+	double DoubleABS(double X);
 };

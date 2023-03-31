@@ -55,6 +55,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_HPF_SHARP, &CImageProcessingView::OnHpfSharp)
 	ON_COMMAND(ID_LPF_SHARP, &CImageProcessingView::OnLpfSharp)
 	ON_COMMAND(ID_DIFF_OPERATOR_HOR, &CImageProcessingView::OnDiffOperatorHor)
+	ON_COMMAND(ID_HOMOGEN_OPERATOR, &CImageProcessingView::OnHomogenOperator)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -466,6 +467,17 @@ void CImageProcessingView::OnDiffOperatorHor()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnDiffOperatorHor();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnHomogenOperator()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnHomogenOperator();
 
 	Invalidate(TRUE);
 }

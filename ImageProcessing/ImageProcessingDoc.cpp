@@ -1233,3 +1233,50 @@ void CImageProcessingDoc::OnDiffOperatorHor()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnHomogenOperator()
+{
+	int i, j, n, m;
+	double max, **tempOutputImage;
+
+	m_Re_height = m_height;
+	m_Re_width = m_width;
+	m_Re_size = m_Re_height * m_Re_width;
+	m_OutputImage = new unsigned char[m_Re_size];
+
+	m_tempImage = Image2DMem(m_height + 2, m_width + 2);
+	tempOutputImage = Image2DMem(m_Re_height, m_Re_width);
+
+	for (i = 0; i<m_height; i++) {
+		for (j = 0; j<m_width; j++) {
+			m_tempImage[i + 1][j + 1] = (double)m_InputImage[i * m_width + j];
+		}
+	}
+	for (i = 0; i< m_Re_height; i++) {
+		for (j = 0; j< m_Re_width; j++) {
+			if (tempOutputImage[i][j] > 255.)
+				tempOutputImage[i][j] = 255.;
+			if (tempOutputImage[i][j] < 0.)
+				tempOutputImage[i][j] = 0.;
+		}
+	}
+
+	for (i = 0; i< m_Re_height; i++) {
+		for (j = 0; j< m_Re_width; j++) {
+			m_OutputImage[i* m_Re_width + j]
+				= (unsigned char)tempOutputImage[i][j];
+		}
+	}
+
+}
+
+
+double CImageProcessingDoc::DoubleABS(double X)
+{
+	// 실수의 절대 값 연산 함수
+	if (X >= 0)
+		return X;
+	else
+		return -X;
+}
