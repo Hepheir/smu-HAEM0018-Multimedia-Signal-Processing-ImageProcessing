@@ -73,6 +73,7 @@ public:
 	afx_msg void OnHomogenOperator();
 	afx_msg void OnLaplacian();
 	afx_msg void OnNearest();
+	afx_msg void OnBilinear();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전

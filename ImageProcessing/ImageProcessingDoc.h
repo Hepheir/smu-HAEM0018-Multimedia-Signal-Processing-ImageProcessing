@@ -93,4 +93,5 @@ public:
 	double DoubleABS(double X);
 	void OnLaplacian();
 	void OnNearest();
+	void OnBilinear();
 };

@@ -58,6 +58,7 @@ BEGIN_MESSAGE_MAP(CImageProcessingView, CView)
 	ON_COMMAND(ID_HOMOGEN_OPERATOR, &CImageProcessingView::OnHomogenOperator)
 	ON_COMMAND(ID_LAPLACIAN, &CImageProcessingView::OnLaplacian)
 	ON_COMMAND(ID_NEAREST, &CImageProcessingView::OnNearest)
+	ON_COMMAND(ID_BILINEAR, &CImageProcessingView::OnBilinear)
 END_MESSAGE_MAP()
 
 // CImageProcessingView 생성/소멸
@@ -502,6 +503,17 @@ void CImageProcessingView::OnNearest()
 	ASSERT_VALID(pDoc);
 
 	pDoc->OnNearest();
+
+	Invalidate(TRUE);
+}
+
+
+void CImageProcessingView::OnBilinear()
+{
+	CImageProcessingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+
+	pDoc->OnBilinear();
 
 	Invalidate(TRUE);
 }
