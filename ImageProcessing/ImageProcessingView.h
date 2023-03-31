@@ -71,6 +71,7 @@ public:
 	afx_msg void OnLpfSharp();
 	afx_msg void OnDiffOperatorHor();
 	afx_msg void OnHomogenOperator();
+	afx_msg void OnLaplacian();
 };
 
 #ifndef _DEBUG  // ImageProcessingView.cpp의 디버그 버전

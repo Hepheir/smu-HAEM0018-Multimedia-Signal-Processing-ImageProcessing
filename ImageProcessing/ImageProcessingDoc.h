@@ -91,4 +91,5 @@ public:
 	void OnDiffOperatorHor();
 	void OnHomogenOperator();
 	double DoubleABS(double X);
+	void OnLaplacian();
 };
