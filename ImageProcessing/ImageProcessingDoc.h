@@ -94,4 +94,7 @@ public:
 	void OnLaplacian();
 	void OnNearest();
 	void OnBilinear();
+	void OnMedianSub();
+	void OnBubbleSort(double *A, int MAX);
+	void OnSwap(double * a, double * b);
 };

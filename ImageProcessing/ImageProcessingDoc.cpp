@@ -1401,3 +1401,64 @@ void CImageProcessingDoc::OnBilinear()
 		}
 	}
 }
+
+
+void CImageProcessingDoc::OnMedianSub()
+{
+	int i, j, n, m, M = 2, index = 0; // M = 서브 샘플링 비율
+	double *Mask, Value;
+
+	Mask = new    double[M*M]; // 마스크의 크기 결정
+
+	m_Re_height = (m_height + 1) / M;
+	m_Re_width = (m_width + 1) / M;
+	m_Re_size = m_Re_height * m_Re_width;
+
+	m_OutputImage = new unsigned char[m_Re_size];
+	m_tempImage = Image2DMem(m_height + 1, m_width + 1);
+
+	for (i = 0; i<m_height; i++) {
+		for (j = 0; j<m_width; j++) {
+			m_tempImage[i][j] = (double)m_InputImage[i*m_width + j];
+		}
+	}
+	for (i = 0; i<m_height - 1; i = i + M) {
+		for (j = 0; j<m_width - 1; j = j + M) {
+			for (n = 0; n<M; n++) {
+				for (m = 0; m<M; m++) {
+					Mask[n*M + m] = m_tempImage[i + n][j + m];
+					// 입력 영상을 블록으로 잘라 마스크 배열에 저장
+				}
+			}
+			OnBubbleSort(Mask, M*M); // 마스크에 저장된 값을 정렬
+			Value = Mask[(int)(M*M / 2)]; // 정렬된 값 중 가운데 값을 선택
+			m_OutputImage[index] = (unsigned char)Value;
+			// 가운데 값을 출력
+			index++;
+		}
+	}
+}
+
+
+void CImageProcessingDoc::OnBubbleSort(double *A, int MAX)
+{
+	// 데이터의 정렬을 처리하는 함수
+	int i, j;
+	for (i = 0; i<MAX; i++) {
+		for (j = 0; j<MAX - 1; j++) {
+			if (A[j] > A[j + 1]) {
+				OnSwap(&A[j], &A[j + 1]);
+			}
+		}
+	}
+}
+
+
+void CImageProcessingDoc::OnSwap(double * a, double * b)
+{
+	// 데이터 교환 함수
+	double temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
