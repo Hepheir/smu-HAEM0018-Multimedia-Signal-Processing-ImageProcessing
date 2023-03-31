@@ -1,0 +1,5 @@
+origin(본 레포지토리):
+https://github.com/Hepheir/smu-HAEM0018-Multimedia-Signal-Processing-ImageProcessing
+
+upstream(부모 레포지토리: 본 레포지토리가 서브모듈로 등록되어 있음):
+https://github.com/Hepheir/smu-HAEM0018-Multimedia-Signal-Processing
